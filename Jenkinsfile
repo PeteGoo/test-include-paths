@@ -8,7 +8,7 @@ pipeline {
         script {
           echo "Hello World:"
           commitHistory.includedCommits.each { item ->
-            sh "echo Commit: ${item.Owner}/${item.Repo}:${item.Branch} ${item.CommitId} ${item.AuthorName}<${item.AuthorEmail}> ${item.Timestamp} ${item.Comment}"
+            sh "echo Commit: ${item.owner}/${item.repo}:${item.branch} ${item.commitId} ${item.authorName}<${item.authorEmail}> ${item.timestamp} ${item.comment}"
           }
         }
       }

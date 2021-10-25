@@ -23,8 +23,8 @@ void whateverFunction() {
     String buildUrl = env.RUN_DISPLAY_URL ?: env.BUILD_LINK ?: ""
     def commits = []
     try {
-      commits = commitHistory.includedCommits.collectEntries{
-          ["Id": it.commitId, "Comment": it.comment]
+      commits = commitHistory.includedCommits.collect { commit -> 
+          ["Id": commit.commitId, "Comment": commit.comment]
       }
     } catch( groovy.lang.MissingPropertyException e ) {
       echo "Could not read commitHistory. Check that the latest filter-by-path plugin is installed"

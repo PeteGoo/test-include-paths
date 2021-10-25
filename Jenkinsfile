@@ -22,10 +22,12 @@ import groovy.json.JsonOutput
 void whateverFunction() {
     String buildUrl = env.RUN_DISPLAY_URL ?: env.BUILD_LINK ?: ""
     def commits = []
-    if(commitHistory != null && foo != null) {
-        commits = commitHistory.includedCommits.collectEntries{
-            ["Id": it.commitId, "Comment": it.comment]
-        }
+    try {
+      commits = commitHistory.includedCommits.collectEntries{
+          ["Id": it.commitId, "Comment": it.comment]
+      }
+    } catch( groovy.lang.MissingPropertyException e ) {
+      echo "Could not read commitHistory. Check that the latest filter-by-path plugin is installed"
     }
     payload = [
             "BuildEnvironment": "Jenkins",

@@ -22,7 +22,7 @@ import groovy.json.JsonOutput
 void whateverFunction() {
     String buildUrl = env.RUN_DISPLAY_URL ?: env.BUILD_LINK ?: ""
     def commits = []
-    if(params.commitHistory != null)) {
+    if(params.commitHistory != null) {
         commits = commitHistory.includedCommits.collectEntries{
             ["Id": it.commitId, "Comment": it.comment]
         }

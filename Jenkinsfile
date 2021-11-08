@@ -8,6 +8,7 @@ pipeline {
         script {
           sh 'printenv'
           echo "Hello World:"
+          echo octopus.getBuildInformation()
           commitHistory.includedCommits.each { item ->
             sh "echo Commit: ${item.owner}/${item.repo}:${item.branch} ${item.commitId} ${item.authorName}\\<${item.authorEmail}\\> ${item.timestamp} ${item.comment}"
           }

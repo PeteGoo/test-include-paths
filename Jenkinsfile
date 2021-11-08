@@ -6,6 +6,7 @@ pipeline {
     stage('build') {
       steps{
         script {
+          sh 'printenv'
           echo "Hello World:"
           commitHistory.includedCommits.each { item ->
             sh "echo Commit: ${item.owner}/${item.repo}:${item.branch} ${item.commitId} ${item.authorName}\\<${item.authorEmail}\\> ${item.timestamp} ${item.comment}"
